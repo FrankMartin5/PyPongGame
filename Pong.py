@@ -62,7 +62,7 @@ def paddle_b_down():
 
 # Keyboard binding
 wn.listen()
-wn.onkeypress(paddle_a_up, "w")
+wn.onkeypress(paddle_a_up, 'w')
 wn.onkeypress(paddle_a_down, "s")
 wn.onkeypress(paddle_b_up, "Up")
 wn.onkeypress(paddle_b_down, "Down")
@@ -88,8 +88,15 @@ while True:
         ball.goto(0, 0)
         ball.dx *= -1
 
-    if ball.xcor() > -390:
+    if ball.xcor() < -390:
         ball.goto(0, 0)
         ball.dx *= -1
 
+    # Paddle and ball collisions
+    if (ball.xcor() > 340 < 350) and (paddle_b.ycor() + 40 > ball.ycor() > paddle_b.ycor() - 40):
+        ball.setx(340)
+        ball.dx *= -1
 
+    if (ball.xcor() < -340 > -350) and (paddle_a.ycor() + 40 > ball.ycor() > paddle_a.ycor() - 40):
+        ball.setx(-340)
+        ball.dx *= -1
